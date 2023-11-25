@@ -1,0 +1,41 @@
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="card-title text-center" style="color:var(--mainC);font-size: clamp(1.75rem, 7vw, 2.5rem);">
+                    Placer une Demande</h3>
+                <p class="card-text">Vous pouvez placer une demande à partir de ce formulaire</p>
+
+                <form [formGroup]="demandeForm" (ngSubmit)="onSubmit()">
+                    <div>
+                        <label for="objet">Objet</label>
+                        <input type="text" class="form-control" name="objet" placeholder="Entrer le objet ici"
+                            formControlName="objet"
+                            [ngClass]="{ 'is-invalid': demandeForm.controls['objet'].invalid && demandeForm.controls['objet'].touched,'is-valid': demandeForm.controls['objet'].valid && demandeForm.controls['objet'].touched }">
+                        <div *ngIf="demandeForm.controls['objet'].invalid && demandeForm.controls['objet'].touched"
+                            class="invalid-feedback">
+                            Veuillez entrer un objet valide.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="raison">Raison</label>
+                        <textarea class="form-control" name="raison" cols="30" rows="7" maxlength="4000"
+                            placeholder="Entrer la raison de demande" formControlName="description"
+                            [ngClass]="{ 'is-invalid': demandeForm.controls['description'].invalid && demandeForm.controls['description'].touched,'is-valid': demandeForm.controls['description'].valid && demandeForm.controls['description'].touched }"></textarea>
+                        <div *ngIf="demandeForm.controls['description'].invalid && demandeForm.controls['description'].touched"
+                            class="invalid-feedback">
+                            Veuillez entrer une raison valide.
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="this.demandeForm.invalid">Confirmer</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div>
+    <div class="d-flex flex-column justify-content-center align-items-center h-100 min-vh-100">
+
+        <div class="card mb-5 mt-5 pb-5 shadow">
+            <div class="card-body">
+                <h4 class="mt-3 mb-3" style="font-size: clamp(1.75rem , 5vw , 3rem);">
+                    Demande
+                </h4>
+                <div class="comment-box mt-3" style="width: 75vw;" *ngIf="demande">
+                    <div class="row ">
+                        <h5 class="mb-0 me-auto pe-5 pb-2 objet" style="width: fit-content; margin-right: auto;">
+                            <span>Objet :
+                            </span>{{demande.objet}}
+                        </h5>
+
+                        <h6 style="width: fit-content;">Etat : <span
+                                [ngClass]="{'text-warning': demande.etat!.includes('en cours'),'text-success': demande.etat!.includes('accepter') ,'text-danger': demande.etat!.includes('refuser')}">{{demande.etat}}</span>
+                        </h6>
+                    </div>
+                    <h6>{{"Club : "+clubName}}</h6>
+                    <small class="text-primary">{{"Date Recu
+                        "+this.formatDemandeDate(demande.dateDem!.toString()!)}}</small>
+
+                    <h6 class="mt-3">Raison : </h6>
+                    <div class="mt-2 mb-3">
+                        <ng-container *ngFor="let line of demande.description.split('\n')">
+                            {{ line }}<br>
+                        </ng-container>
+                    </div>
+                    <hr>
+                    <h6 class="mt-3">Reponse : </h6>
+                    <div class="d-flex flex-column" *ngIf="demande.etat=='en cours'">
+                        <textarea name="reponse" id="reponse" cols="30" rows="10" maxlength="4000"
+                            class="form-control mt-3" [(ngModel)]="reponseInput"></textarea>
+                        <div class="w-100 d-flex justify-content-center mt-3 px-3"><button class="btn btn-success me-2"
+                                (click)="addReponse({reponse:reponseInput,etat:'accepter'})">Accepter</button><button
+                                class="btn btn-danger"
+                                (click)="addReponse({reponse:reponseInput,etat:'refuser'})">Refuser</button>
+                        </div>
+                    </div>
+                    <div class="mt-2 mb-3" *ngIf="demande.etat!='en cours'">
+                        <ng-container *ngFor="let line of demande.reponse!.split('\n')">
+                            {{ line }}<br>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

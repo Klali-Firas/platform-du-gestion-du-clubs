@@ -1,0 +1,79 @@
+<div style="height: 60px;"></div>
+<div class="row align-items-center align-content-center" style="min-height: calc(100vh - 60px);">
+
+    <div class="col-10 mb-5  card shadow p-4 mx-auto col-align-self-center" style="min-width: 300px;max-width: 90wh">
+        <div class="text-center mb-5  p-4 mx-auto col-align-self-center w-100">
+
+            <h5>Ajouter un Material</h5>
+            <input type="text" class="form-control mt-3 text-center" [(ngModel)]="materialInput">
+            <button class="btn btn-primary mt-3" (click)="addMaterial()">Ajouter</button>
+        </div>
+        <table class="table border">
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Activer / Desactiver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let material of materials">
+                    <td>{{material.label}}</td>
+                    <td><button class="btn" [ngClass]="{'btn-success': !material.etat,'btn-danger': material.etat}"
+                            style="width: 98.4px;"
+                            (click)="material.etat? deleteMaterial(material._id!):activateMaterial(material._id!)">{{material.etat?"Desactiver":"Activer"}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-10 mb-5  card shadow p-4 mx-auto col-align-self-center" style="min-width: 300px;max-width: 90wh">
+        <div class="text-center mb-5  p-4 mx-auto col-align-self-center w-100">
+
+            <h5>Ajouter une Salle</h5>
+            <input type="text" class="form-control mt-3 text-center" [(ngModel)]="salleInput">
+            <button class="btn btn-primary mt-3 " (click)="addSalle()">Ajouter</button>
+        </div>
+        <table class="table border">
+            <thead>
+                <tr>
+                    <th>Salle</th>
+                    <th>Activer / Desactiver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let salle of salles">
+                    <td>{{salle.label}}</td>
+                    <td><button class="btn" [ngClass]="{'btn-success': !salle.etat,'btn-danger': salle.etat}"
+                            style="width: 98.4px;"
+                            (click)="salle.etat? deleteSalle(salle._id!):activateSalle(salle._id!)">{{salle.etat?"Desactiver":"Activer"}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-10 mb-5  card shadow p-4 mx-auto col-align-self-center" style="min-width: 300px;max-width: 90wh">
+        <div class="text-center mb-5  p-4 mx-auto col-align-self-center w-100">
+
+            <h5>Ajouter un Stand</h5>
+            <input type="text" class="form-control mt-3 text-center" [(ngModel)]="standInput">
+            <button class="btn btn-primary mt-3" (click)="addStand">Ajouter</button>
+        </div>
+        <table class="table border">
+            <thead>
+                <tr>
+                    <th>Stand</th>
+                    <th>Activer / Desactiver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stand of stands">
+                    <td>{{stand.label}}</td>
+                    <td><button class="btn" [ngClass]="{'btn-success': !stand.etat,'btn-danger': stand.etat}"
+                            style="width: 98.4px;"
+                            (click)="stand.etat? deleteStand(stand._id!):activateStand(stand._id!)">{{stand.etat?"Desactiver":"Activer"}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

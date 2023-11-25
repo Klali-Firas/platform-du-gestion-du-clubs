@@ -1,0 +1,75 @@
+<div class="d-flex flex-column justify-content-center align-items-center" style="min-height: calc( 100vh - 40px );">
+    <div class="container py-1 px-1">
+
+        <div class="row rounded-lg overflow-hidden shadow">
+            <h2 class="text-center bg-white mb-0 px-2 py-2 ">Boîtier de messagerie</h2>
+            <div class="col-5 px-0">
+                <div class="bg-white">
+
+                    <div class="bg-gray px-4 py-2 bg-light">
+                        <p class="h5 mb-0 py-1">Recent</p>
+                    </div>
+
+                    <div class="messages-box">
+                        <div class="list-group rounded-0" *ngIf="chats">
+                            <a class="list-group-item list-group-item-action rounded-0" *ngFor="let chatItem of chats"
+                                (click)="chat=chatItem" style="overflow: hidden;max-height: 5rem"
+                                [ngClass]="{'active': chat.club==chatItem.club, 'text-white':chat.club==chatItem.club,'list-group-item-light':chat.club!==chatItem.club}">
+                                <div class="media">
+                                    <!-- <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg"
+                                        alt="user" width="50" class="rounded-circle"> -->
+                                    <div class="media-body ml-4">
+                                        <div class="d-flex align-items-center justify-content-between mb-1">
+                                            <h6 class="mb-0">{{chatItem.clubName}}</h6><small
+                                                class="small font-weight-bold">
+                                                {{formatDayMonth(chatItem.content[chatItem.content.length-1].timestamp)}}
+                                            </small>
+                                        </div>
+                                        <p class="font-italic mb-0 text-small">
+                                            {{(chatItem.content[chatItem.content.length-1].isAdmin?"You:
+                                            ":"")+chatItem.content[chatItem.content.length-1].message}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Chat Box-->
+            <div class="col-7 px-0" *ngIf="chat">
+                <div class="px-4 py-5 chat-box bg-white">
+                    <!-- Sender Message-->
+                    <ng-container *ngFor="let message of chat.content">
+                        <div class="media  mb-3" [ngClass]="{'ms-auto': message.isAdmin}" style="width: 60%;">
+                            <div class="media-body ms-3">
+                                <div class=" rounded py-2 px-3 mb-2"
+                                    [ngClass]="{'bg-primary': message.isAdmin,'bg-light': !message.isAdmin}">
+                                    <p class="text-small mb-0"
+                                        [ngClass]="{'text-white': message.isAdmin,'text-muted': !message.isAdmin}">
+                                        {{message.message}}</p>
+                                </div>
+                                <p class="text-muted" style="font-size: smaller;">{{this.formatDate(message.timestamp)}}
+                                </p>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </div>
+
+                <!-- Typing area -->
+                <form action="#" class="bg-light">
+                    <div class="input-group">
+                        <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
+                            class="form-control rounded-0 border-0 py-4 bg-light" [(ngModel)]="inp" name="message"
+                            autocomplete="off">
+                        <div class="input-group-append d-flex align-items-center mx-2">
+                            <button id="button-addon2" type="submit" class="btn btn-primary" (click)="sendMessage(inp)"
+                                [disabled]="inp===''">Send</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

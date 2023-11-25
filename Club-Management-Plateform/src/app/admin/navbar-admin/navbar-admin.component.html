@@ -1,0 +1,54 @@
+<p>navbar-admin works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" routerLink="#">Clubs Manager</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a (click)="navigateToGestionMaterialStandSalle()" class="nav-link" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Gestion des Matériaux et
+                            Espaces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="navigateToGestionReservations()" class="nav-link" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Reservations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="navigateToGestionDemandes()" class="nav-link" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Demandes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="navigateToGestionClubs()" class="nav-link" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Gestion des Clubs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="navigateToMessagerie()" class="nav-link" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Boîtier de messagerie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="logout()" class="nav-link" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Deconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+
+</html>

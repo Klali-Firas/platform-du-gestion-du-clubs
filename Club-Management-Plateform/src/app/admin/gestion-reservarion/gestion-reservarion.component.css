@@ -1,0 +1,18 @@
+.comment-box {
+  padding: 15px 35px;
+  background-color: #f0f0f0;
+}
+h4 {
+  color: var(--mainC);
+  text-align: center;
+}
+.row {
+  margin: 0;
+  --bs-gutter-x: 0;
+}
+.objet {
+  text-decoration: underline;
+}
+.objet:hover {
+  cursor: pointer;
+}

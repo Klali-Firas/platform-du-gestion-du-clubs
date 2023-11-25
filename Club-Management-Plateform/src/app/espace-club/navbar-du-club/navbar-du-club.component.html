@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Website</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" routerLink="#">Clubs Manager</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <div class="dropdown nav-item">
+            <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Demandes
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" (click)="navigateToDemandeFormateur()" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Placer Une Demande</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="navigateToHistoireDemandes()" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Historique</a>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown nav-item">
+            <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Reservation
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" (click)="navigateToReservationMaterial()" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Reservation de Materiel</a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="navigateToReservationStand()" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Reservation de Stand</a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="navigateToReservationSalle()" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Reservation de Salle</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="navigateToHistireReservation()" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Historique</a>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown nav-item">
+            <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Gestion du Club
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" (click)="navigateToGestionDeMembers()" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Gestion de Membres</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Gestion de Bureaux</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show">Historique</a>
+              </li>
+            </ul>
+          </div>
+          <li class="nav-item">
+            <a (click)="navigateToContactAdministrateur()" class="nav-link" data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show">Contacter
+              L'administrateur</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="logout()" class="nav-link" data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show">Deconnecter</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</body>
+
+</html>

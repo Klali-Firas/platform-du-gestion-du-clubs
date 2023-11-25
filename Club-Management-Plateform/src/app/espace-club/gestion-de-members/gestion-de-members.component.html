@@ -1,0 +1,95 @@
+<!-- Add New Member Form Section -->
+<div style="height: 60px;"></div>
+<div class="card shadow p-3 mb-5 bg-white rounded mx-auto mt-5" style="width:clamp(300px , 60vw , 700px);">
+    <h2 class="card-title text-center mb-4">Add New Member</h2>
+    <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name:</label>
+            <input type="text" id="firstName" formControlName="firstName" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name:</label>
+            <input type="text" id="lastName" formControlName="lastName" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender:</label>
+            <select id="gender" formControlName="gender" class="form-control">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="role" class="form-label">Select Role:</label>
+            <select name="role" id="role" formControlName="roles" (change)="onRoleSelect($event)" class="form-control">
+                <option value="" disabled>Select Role</option>
+                <option *ngFor="let role of clubExclusiveRoles"
+                    [ngValue]="[{clubId: clubData.id, role: role,isExclusive:true}]">{{role}}</option>
+                <option *ngFor="let role of clubRoles"
+                    [ngValue]="[{clubId: clubData.id, role: role,isExclusive:false}]">{{role}}</option>
+                <option value="addRole">Add Role</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!memberForm.valid">Submit</button>
+    </form>
+</div>
+
+
+<!-- Members of the Current Club Section -->
+<div class="card shadow p-3 mb-5 bg-white rounded mt-5 mx-3">
+    <h2 class="card-title text-center mb-4">Members of the Current Club</h2>
+    <div class="table-responsive">
+        <table class="table table-striped" id="no-more-tables">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Roles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let member of members">
+                    <td data-title="First Name">{{ member.firstName }}</td>
+                    <td data-title="Last Name">{{ member.lastName }}</td>
+                    <td data-title="Email">{{ member.email }}</td>
+                    <td data-title="Gender">{{ member.gender }}</td>
+                    <td data-title="Club Role">
+                        <div *ngFor="let role of member.roles">
+                            <div *ngIf="role.clubId === clubData.id">
+                                {{ role.role }}
+                            </div>
+                        </div>
+                    </td>
+                    <td><button class="btn btn-danger" (click)="removeMember(member._id!)">Remove!</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
+    *ngIf="addingNewRole" (click)="togglePopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
+    <div class="card shadow  h-50 bg-white border border-dark rounded text-center"
+        style="width:clamp(300px , 60vw , 500px);" (click)="$event.stopPropagation()">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+            <h5 class="card-title mb-3">Add New Role:</h5>
+            <input type="text" id="addRole" #newRole class="form-control mb-3" placeholder="Enter Role">
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isExclusive" [(ngModel)]="isExclusive">
+                <label class="form-check-label" for="isExclusive">Exclusive Role</label>
+            </div>
+            <button class="btn btn-primary" (click)="addRole(newRole.value, isExclusive)">Add Role</button>
+        </div>
+    </div>
+</div>

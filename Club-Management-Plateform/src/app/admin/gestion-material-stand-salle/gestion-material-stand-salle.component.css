@@ -1,0 +1,8 @@
+.row {
+  margin: 0;
+  --bs-gutter-x: 0;
+}
+.table td,
+.table th {
+  max-width: 50px;
+}

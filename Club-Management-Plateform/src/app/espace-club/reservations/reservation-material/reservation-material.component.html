@@ -1,0 +1,101 @@
+<div style="height: 60px;"></div>
+<div class="row align-items-center" style="min-height: calc(100vh - 60px);">
+    <div class=" card shadow p-4 mx-auto col-align-self-center" style="width: clamp(300px, 60vw , 500px);">
+        <h3 class="mb-4 text-center" style="font-size: clamp(1.75rem , 5vw , 2.5rem);color: var(--mainC);">Reservation
+            Material</h3>
+        <form [formGroup]="reservationForm" (ngSubmit)="createReservation()">
+            <!-- Your form controls here using formGroup and formControlName -->
+            <div class="mb-3">
+                <label for="reservationObjet" class="form-label">Objet :</label>
+                <input type="text" [ngClass]="{'is-invalid': reservationForm.controls['objet'].invalid && reservationForm.controls['objet'].touched,
+                    'is-valid': reservationForm.controls['objet'].valid && reservationForm.controls['objet'].touched}"
+                    id="reservationObjet" formControlName="objet" class="form-control" required>
+                <div class="invalid-feedback"
+                    *ngIf="reservationForm.controls['objet'].invalid && reservationForm.controls['objet'].touched">
+                    Ce champ est obligatoire.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="reservationDescription" class="form-label">Raison :</label>
+                <textarea id="reservationDescription" formControlName="description" class="form-control" required
+                    name="desc"
+                    [ngClass]="{'is-invalid': reservationForm.controls['description'].invalid && reservationForm.controls['description'].touched,
+                    'is-valid': reservationForm.controls['description'].valid && reservationForm.controls['description'].touched}"></textarea>
+                <div class="invalid-feedback"
+                    *ngIf="reservationForm.controls['description'].invalid && reservationForm.controls['description'].touched">
+                    Ce champ est obligatoire.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="materialSelect" class="form-label">Selectioner un Material:</label>
+                <select id="materialSelect" formControlName="selectedMaterialId" class="form-control"
+                    (change)="enableDateDeb()"
+                    [ngClass]="{'is-invalid': reservationForm.controls['selectedMaterialId'].invalid && reservationForm.controls['selectedMaterialId'].touched,
+                    'is-valid': reservationForm.controls['selectedMaterialId'].valid && reservationForm.controls['selectedMaterialId'].touched}">
+                    <option value="" disabled>Select Material</option>
+                    <ng-container *ngFor="let material of materials">
+                        <option [value]="material._id" *ngIf="material.etat">{{ material.label }}</option>
+                    </ng-container>
+                </select>
+                <div class="invalid-feedback"
+                    *ngIf="reservationForm.controls['selectedMaterialId'].invalid && reservationForm.controls['selectedMaterialId'].touched">
+                    Ce champ est obligatoire.
+                </div>
+            </div>
+
+            <div class="mb-3" *ngIf="reservationForm.controls['selectedMaterialId'].valid">
+                <div *ngFor="let reservation of reservations">
+
+                    <small class=""
+                        *ngIf="reservation.etat=='accepter' && reservation.reference==reservationForm.controls['selectedMaterialId'].value && isAfterToday(reservation.dateFin)">
+                        <strong>Reserver du : </strong>{{ reservation.dateDeb | date: 'd/M/yy' }} -
+                        {{ reservation.dateFin | date: 'd/M/yy'
+                        }}
+                        <!-- H:mm -->
+                    </small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="reservationDateDeb" class="form-label">Date Debut :</label>
+                <input type="datetime-local" id="reservationDateDeb" formControlName="dateDeb" class="form-control"
+                    [min]="ISOToday.substring(0,ISOToday.indexOf('.')-3)" required name="dateDeb"
+                    (change)="enableDateFin()"
+                    [ngClass]="{'is-invalid': reservationForm.controls['dateDeb'].invalid && reservationForm.controls['dateDeb'].touched,
+                    'is-valid': reservationForm.controls['dateDeb'].valid && reservationForm.controls['dateDeb'].touched}">
+                <div class="invalid-feedback" *ngIf="reservationForm.controls['dateDeb'].hasError('required')">
+                    Ce champ est obligatoire.
+                </div>
+                <div class="invalid-feedback" *ngIf="reservationForm.controls['dateDeb'].hasError('dateUnavailable')">
+                    Ce material est deja reserver a ce date!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="reservationDateFin" class="form-label">Date fin :</label>
+                <input type="datetime-local" id="reservationDateFin" formControlName="dateFin" class="form-control"
+                    [attr.min]="reservationForm.get('dateDeb')!.value" required name="dateFin"
+                    [ngClass]="{'is-invalid': reservationForm.controls['dateFin'].invalid && reservationForm.controls['dateFin'].touched,
+                    'is-valid': reservationForm.controls['dateFin'].valid && reservationForm.controls['dateFin'].touched}">
+                <div class="invalid-feedback" *ngIf="reservationForm.controls['dateFin'].hasError('required')">
+                    Ce champ est obligatoire.
+                </div>
+                <div class="invalid-feedback" *ngIf="reservationForm.controls['dateFin'].hasError('dateUnavailable')">
+                    Ce material est deja reserver a ce date!
+                </div>
+            </div>
+
+
+            <div class="text-center">
+                <button type="button" class="btn btn-primary " (click)="createReservation()">Reserver</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- <div *ngFor="let reservation of reservations">
+            <p>{{ reservation.objet }} - {{ reservation.etat }}</p>
+            <button (click)="updateReservationEtat(reservation._id!, 'accepter')">Accept</button>
+            <button (click)="updateReservationEtat(reservation._id!, 'refuser')">Reject</button>
+</div> -->

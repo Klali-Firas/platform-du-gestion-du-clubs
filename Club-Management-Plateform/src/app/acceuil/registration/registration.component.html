@@ -1,0 +1,90 @@
+<!-- Jumbotron -->
+<div class="px-4 py-4 px-md-5 text-center text-lg-start d-flex align-items-center justify-content-center my-5"
+  style="background-color: hsl(0, 0%, 96%);min-height: calc(100vh - 6rem );">
+  <div class="container">
+    <div class="row gx-lg-5 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <h1 class=" display-3 fw-bold ls-tight" style="font-size: clamp(3rem,6vw,4.5rem);">
+          Gestion de <br />
+          <span class="text-primary">Clubs</span>
+        </h1>
+        <p style="color: hsl(217, 10%, 50.8%)">
+          Connectez-vous à l'Excellence Technologique à l'ISET Radès
+          Découvrez notre plateforme dédiée à l'innovation, à l'apprentissage et à la communauté de l'ISET
+          Radès. Explorez des opportunités académiques et extracurriculaires uniques, et préparez-vous à
+          façonner un avenir brillant dans le monde de la technologie.
+        </p>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card">
+          <div class="card-body py-5 px-md-5">
+            <div class="container mt-4">
+              <h2>Signup</h2>
+
+              <div class="container mt-5 ">
+                <form (ngSubmit)="signup()" [formGroup]="form" class="row g-3 text-left">
+                  <div class="col-md-6">
+                    <label for="clubName" class="form-label">Club Name</label>
+                    <input type="text" class="form-control" id="clubName" formControlName="clubName" [ngClass]="{'is-invalid': form.controls['clubName'].invalid && form.controls['clubName'].touched,
+                        'is-valid': form.controls['clubName'].valid && form.controls['clubName'].touched}">
+                    <div class="invalid-feedback"
+                      *ngIf="form.controls['clubName'].invalid && form.controls['clubName'].touched">
+                      Please enter a valid Club Name.
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="clubDescription" class="form-label">Club Description</label>
+                    <textarea class="form-control" id="clubDescription" formControlName="clubDescription"
+                      [ngClass]="{'is-invalid': form.controls['clubDescription'].invalid && form.controls['clubDescription'].touched,
+                        'is-valid': form.controls['clubDescription'].valid && form.controls['clubDescription'].touched}"></textarea>
+                    <div class="invalid-feedback"
+                      *ngIf="form.controls['clubDescription'].invalid && form.controls['clubDescription'].touched">
+                      Please enter a valid Club Description.
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': (form.controls['email'].invalid && form.controls['email'].touched)|| serverError,
+                        'is-valid': (form.controls['email'].valid && form.controls['email'].touched && !serverError)}">
+                    <div class="invalid-feedback"
+                      *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+                      Please enter a valid email address.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="serverError">
+                      {{serverErrorMessage}}
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{'is-invalid': form.controls['password'].invalid && form.controls['password'].touched,
+                        'is-valid': form.controls['password'].valid && form.controls['password'].touched}">
+                    <div class="invalid-feedback"
+                      *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+                      Please enter a valid password.
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="tel" class="form-label">Telephone</label>
+                    <input type="tel" class="form-control" id="tel" formControlName="tel" [ngClass]="{'is-invalid': form.controls['tel'].invalid && form.controls['tel'].touched,
+                        'is-valid': form.controls['tel'].valid && form.controls['tel'].touched}">
+                    <div class="invalid-feedback"
+                      *ngIf="form.controls['tel'].invalid && form.controls['tel'].touched && !form.controls['tel'].hasError('pattern')">
+                      Please enter a valid telephone number.
+                    </div>
+                    <div class="invalid-feedback"
+                      *ngIf="form.controls['tel'].hasError('pattern') && form.controls['tel'].touched">
+                      Please enter a valid telephone number exactly 8 digits long.
+                    </div>
+                  </div>
+
+                  <div class="col-12 text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                  </div>
+                </form>
+              </div>
+            </div>

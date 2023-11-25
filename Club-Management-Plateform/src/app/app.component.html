@@ -1,0 +1,6 @@
+<app-navbar-du-club *ngIf="islogedin && !isAdmin"></app-navbar-du-club>
+<app-navbar-admin *ngIf="islogedin && isAdmin"></app-navbar-admin>
+<app-acceuil *ngIf="!islogedin"></app-acceuil>
+
+
+<router-outlet></router-outlet>

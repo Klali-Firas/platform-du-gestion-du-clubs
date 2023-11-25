@@ -1,0 +1,31 @@
+<div class="d-flex flex-column justify-content-center align-items-center " style="min-height: calc(100vh - 60px);">
+    <div class="card shadow p-3 mb-5 bg-white rounded mt-5 mx-3" style="min-width:300px;width: 95vw;">
+        <h2 class="card-title text-center mb-4">Liste des Clubs</h2>
+        <div class="table-responsive">
+            <table class="table table-border table-hover" id="no-more-tables">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Telephone</th>
+                        <th colspan="2">Etat</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let club of clubs">
+                        <td data-title="Name">{{ club.clubName }}</td>
+                        <td data-title="Email">{{ club.email }}</td>
+                        <td data-title="Telephone">{{ club.tel }}</td>
+                        <td data-title="Etat">{{ club.etat?"Active":"Non Active" }}</td>
+                        <td data-title="" (click)="changeClubState(club._id!,!club.etat)"><button class="btn "
+                                [ngClass]="{'btn-danger':club.etat,'btn-success':!club.etat}">{{
+                                !club.etat?"Active":"Desactive"
+                                }}</button></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
