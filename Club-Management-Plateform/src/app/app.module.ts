@@ -30,6 +30,7 @@ import { GestionClubsComponent } from './admin/gestion-clubs/gestion-clubs.compo
 import { ContactAdminComponent } from './espace-club/contact-admin/contact-admin.component';
 import { DatePipe } from '@angular/common';
 import { MessagerieComponent } from './admin/messagerie/messagerie.component';
+import { HomeComponent } from './admin/home/home.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { MessagerieComponent } from './admin/messagerie/messagerie.component';
     RepondreDemandeComponent,
     GestionClubsComponent,
     ContactAdminComponent,
-    MessagerieComponent
+    MessagerieComponent,
+    HomeComponent
 
 
 

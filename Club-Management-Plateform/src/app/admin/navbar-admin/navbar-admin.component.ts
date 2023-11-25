@@ -33,6 +33,8 @@ export class NavbarAdminComponent {
   navigateToMessagerie() {
     this.router.navigate([`/admin/${this.clubID}/messagerie`]);
   }
-
+  navigateToHome() {
+    this.router.navigate([`/admin/${this.clubID}`]);
+  }
 
 }

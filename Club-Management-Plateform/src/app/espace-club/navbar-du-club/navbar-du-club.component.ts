@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginStateService } from 'src/app/services/login-state.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class NavbarDuClubComponent {
     this.router.navigate(['']);
   }
   clubID = localStorage.getItem('clubID');
+  clubData = JSON.parse(localStorage.getItem('clubData')!)
 
   navigateToDemandeFormateur() {
     this.router.navigate([`/clubs/${this.clubID}/demande-formateur`]);
@@ -41,6 +42,9 @@ export class NavbarDuClubComponent {
   }
   navigateToContactAdministrateur() {
     this.router.navigate([`/clubs/${this.clubID}/contact-administrateur`]);
+  }
+  navigateToHome() {
+    this.router.navigate([`/clubs/${this.clubID}`]);
   }
 
 

@@ -24,7 +24,7 @@
 
               <div class="container mt-5 ">
                 <form (ngSubmit)="signup()" [formGroup]="form" class="row g-3 text-left">
-                  <div class="col-md-6">
+                  <div class="col-md-6 pe-md-1">
                     <label for="clubName" class="form-label">Club Name</label>
                     <input type="text" class="form-control" id="clubName" formControlName="clubName" [ngClass]="{'is-invalid': form.controls['clubName'].invalid && form.controls['clubName'].touched,
                         'is-valid': form.controls['clubName'].valid && form.controls['clubName'].touched}">
@@ -34,7 +34,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6 ps-md-1">
                     <label for="clubDescription" class="form-label">Club Description</label>
                     <textarea class="form-control" id="clubDescription" formControlName="clubDescription"
                       [ngClass]="{'is-invalid': form.controls['clubDescription'].invalid && form.controls['clubDescription'].touched,
@@ -45,7 +45,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6 pe-md-1">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': (form.controls['email'].invalid && form.controls['email'].touched)|| serverError,
                         'is-valid': (form.controls['email'].valid && form.controls['email'].touched && !serverError)}">
@@ -58,7 +58,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6 ps-md-1">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{'is-invalid': form.controls['password'].invalid && form.controls['password'].touched,
                         'is-valid': form.controls['password'].valid && form.controls['password'].touched}">
@@ -68,7 +68,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6 pe-md-1">
                     <label for="tel" class="form-label">Telephone</label>
                     <input type="tel" class="form-control" id="tel" formControlName="tel" [ngClass]="{'is-invalid': form.controls['tel'].invalid && form.controls['tel'].touched,
                         'is-valid': form.controls['tel'].valid && form.controls['tel'].touched}">

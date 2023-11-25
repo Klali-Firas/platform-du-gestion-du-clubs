@@ -1,0 +1,36 @@
+<!-- home.component.html -->
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body">
+            <h3 class="card-title text-center">Create Annonce</h3>
+            <form [formGroup]="annonceForm" (ngSubmit)="createAnnonce()">
+                <div class="mb-3">
+                    <label for="objet" class="form-label">Objet:</label>
+                    <input type="text" class="form-control" id="objet" formControlName="objet" [ngClass]="{
+                            'is-valid': annonceForm.controls['objet'].valid && annonceForm.controls['objet'].touched,
+                            'is-invalid': annonceForm.controls['objet'].invalid && annonceForm.controls['objet'].touched
+                        }">
+                    <div class="invalid-feedback"
+                        *ngIf="annonceForm.controls['objet'].invalid && annonceForm.controls['objet'].touched">
+                        Please provide a valid Objet.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea class="form-control" id="description" formControlName="description" [ngClass]="{
+                            'is-valid': annonceForm.controls['description'].valid && annonceForm.controls['description'].touched,
+                            'is-invalid': annonceForm.controls['description'].invalid && annonceForm.controls['description'].touched
+                        }" rows="10"></textarea>
+                    <div class="invalid-feedback"
+                        *ngIf="annonceForm.controls['description'].invalid && annonceForm.controls['description'].touched">
+                        Please provide a valid Description.
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" [disabled]="annonceForm.invalid">Create
+                        Annonce</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

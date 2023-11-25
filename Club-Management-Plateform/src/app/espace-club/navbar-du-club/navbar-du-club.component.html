@@ -10,7 +10,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-      <a class="navbar-brand" routerLink="#">Clubs Manager</a>
+      <a class="navbar-brand" (click)="navigateToHome()">{{clubData.name}}</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,30 +63,15 @@
               </li>
             </ul>
           </div>
-          <div class="dropdown nav-item">
-            <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Gestion du Club
-            </a>
 
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" (click)="navigateToGestionDeMembers()" data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show">Gestion de Membres</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#" data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show">Gestion de Bureaux</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#" data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show">Profile</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#" data-bs-toggle="collapse"
-                  data-bs-target=".navbar-collapse.show">Historique</a>
-              </li>
-            </ul>
-          </div>
+
+
+          <li class="nav-item">
+            <a class="nav-link" (click)="navigateToGestionDeMembers()" data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show">Gestion de Membres</a>
+          </li>
+
+
           <li class="nav-item">
             <a (click)="navigateToContactAdministrateur()" class="nav-link" data-bs-toggle="collapse"
               data-bs-target=".navbar-collapse.show">Contacter

@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Annonce } from 'src/app/interfaces/iannonce';
 import { APIService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,29 +11,25 @@ import { APIService } from 'src/app/services/api.service';
 
 
 export class ClubsComponent implements OnInit {
-  clubs: any[] = []; // Change the type based on your club data structure
+  annonces!: Annonce[];
 
-  constructor(private apiService: APIService) {
 
-  }
+  constructor(private api: APIService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.getAllClubs();
+    this.getAnnonces();
   }
 
-  getAllClubs() {
-    this.apiService.getAllClubs().subscribe(
-      {
-        next: (clubs) => {
-          this.clubs = clubs;
-        },
-        error: (error) => {
-          console.error('Error fetching clubs:', error);
-        }
-      });
+  getAnnonces() {
+    this.api.getAnnonces().subscribe({
+      next: (res) => {
+        this.annonces = res.reverse();
+      }
+    });
   }
-
-
+  formatDate(date: Date) {
+    return this.datePipe.transform(date, 'shortTime') + ' | ' + this.datePipe.transform(date, 'MMM d');
+  }
 
 
 }

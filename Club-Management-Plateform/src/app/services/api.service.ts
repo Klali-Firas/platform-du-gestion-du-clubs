@@ -9,6 +9,7 @@ import { Material } from '../interfaces/imaterial';
 import { Salle } from '../interfaces/isalle';
 import { Stand } from '../interfaces/istand';
 import { Chat } from '../interfaces/ichat';
+import { Annonce } from '../interfaces/iannonce';
 
 @Injectable({
   providedIn: 'root'
@@ -277,5 +278,15 @@ export class APIService {
   //addMessage to the Chat
   addMessage(clubId: string, content: string, senderIsAdmin: boolean): Observable<Chat> {
     return this.http.post<Chat>(`${this.apiUrl}service/chat/addMessage`, { clubId, content, senderIsAdmin });
+  }
+
+  //Annonces Services
+
+  createAnnonce(objet: string, description: string): Observable<Annonce> {
+    return this.http.post<Annonce>(`${this.apiUrl}service/annonces/create`, { objet, description });
+  }
+
+  getAnnonces(): Observable<Annonce[]> {
+    return this.http.get<Annonce[]>(`${this.apiUrl}service/annonces/getAnnonces`);
   }
 }

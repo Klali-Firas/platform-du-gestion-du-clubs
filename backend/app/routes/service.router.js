@@ -9,6 +9,7 @@ const materialRoutes = require('./materialService.router');
 const salleRoutes = require('./salleService.router')
 const standRoutes = require('./standService.router')
 const chatRoutes = require('./chatService.router')
+const annoncesRoutes = require('./annonceService.router')
 
 // Example usage in a route/controller
 router.use('/clubs', clubService);
@@ -19,6 +20,7 @@ router.use('/materials', materialRoutes);
 router.use('/salles', salleRoutes);
 router.use('/stands', standRoutes);
 router.use('/chat', chatRoutes);
+router.use('/annonces', annoncesRoutes);
 
 
 module.exports = router;
