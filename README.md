@@ -6,6 +6,7 @@ Le Platforme de Gestion des Clubs est une application web qui aide les clubs à 
 
 - [Introduction](#introduction)
 - [Fonctionnalités](#fonctionnalités)
+- [Technologies Utilisées](#Technologies-Utilisées)
 - [Pour Commencer](#pour-commencer)
   - [Prérequis](#prérequis)
   - [Installation](#installation)
@@ -17,12 +18,26 @@ Le Platforme de Gestion des Clubs est une application web qui aide les clubs à 
 Le Platforme de Gestion des Clubs simplifie la gestion des clubs en fournissant des outils pour gérer les adhésions, les réservations de matériel, de stands et de salles, ainsi qu'un système de messagerie intégré entre les administrateurs et les clubs.
 
 ## Fonctionnalités
-
+- **Authentification :** Le Platforme de Gestion des Clubs utilise JSON Web Token (JWT) pour l'authentification.
 - **Gestion des Membres :** Ajoutez, mettez à jour et supprimez des membres de club avec différents rôles.
 - **Système de Réservation :** Réservez du matériel, des stands et des salles pour les activités du club.
 - **Système de Demandes :** Permet aux clubs de soumettre des demandes pour diverses actions, telles que des événements, des autorisations spéciales, etc.
 - **Système d'Annonces :** Publiez des annonces importantes pour informer les clubs des dernières nouvelles, des événements à venir, etc.
 - **Système de Messagerie :** Communiquez entre les administrateurs et les clubs grâce à un système de messagerie intégré.
+
+## Technologies Utilisées
+
+Le Platforme de Gestion des Clubs utilise les technologies suivantes :
+
+- **Backend :**
+  - Node.js
+  - Express.js
+  - MongoDB
+
+- **Frontend :**
+  - Angular
+  - Bootstrap 5
+
 
 ## Pour Commencer
 
